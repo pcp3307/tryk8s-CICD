@@ -12,4 +12,17 @@ node{
 
     stage '放置映像檔'
     sh("gcloud docker -- push ${imgWithTag} ")
+
+    stage '部署'
+    // replace as new image
+    sh("sed -i.bak 's#gcr.io/ithome-image#${imgWithTag}#' ./k8s/deploy.yaml")
+    switch (env.BRANCH_NAME) {
+      case "master":
+        // replace namespace settings
+        sh("sed -i.bak 's#env: current#env: ${devNamespace}#' ./k8s/service.yaml")
+        sh("sed -i.bak 's#env: current#env: ${devNamespace}#' ./k8s/deploy.yaml")
+        sh("kubectl --namespace=${devNamespace} apply -f ./k8s/service.yaml")
+        sh("kubectl --namespace=${devNamespace} apply -f ./k8s/deploy.yaml")
+        break
+    }
 }
