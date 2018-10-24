@@ -1,0 +1,9 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: ithome-ingress
+  namespace: develop
+spec:
+  backend:
+    serviceName: ithome
+    servicePort: 80
