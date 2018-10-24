@@ -15,7 +15,7 @@ node{
 
     stage '部署'
     // replace as new image
-    sh("sed -i.bak 's#gcr.io/ithome-image#${imgWithTag}#' ./k8s/deploy.yaml")
+    sh("sed -i.bak 's#gcr.io/k8stest-image#${imgWithTag}#' ./k8s/deploy.yaml")
     switch (env.BRANCH_NAME) {
       case "master":
         // replace namespace settings

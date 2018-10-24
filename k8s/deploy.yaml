@@ -1,19 +1,19 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: ithome
+  name: k8stest
 spec:
   replicas: 1
   template:
     metadata:
-      name: ithome
+      name: k8stest
       labels:
-        app: ithome
+        app: k8stest
         env: current
         spec:
       containers:
-      - name: ithome
-        image: gcr.io/ithome-image
+      - name: k8stest
+        image: gcr.io/k8stest-image
         resources:
           limits:
             memory: 0

@@ -1,9 +1,9 @@
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: ithome-ingress
+  name: k8stest-ingress
   namespace: develop
 spec:
   backend:
-    serviceName: ithome
+    serviceName: k8stest
     servicePort: 80
