@@ -10,7 +10,7 @@ spec:
       labels:
         app: k8stest
         env: current
-        spec:
+    spec:
       containers:
       - name: k8stest
         image: gcr.io/k8stest-image
