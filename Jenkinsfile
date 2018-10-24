@@ -5,6 +5,9 @@ node{
     def img = "gcr.io/${project}/${appName}-${env.BRANCH_NAME}"
     def imgWithTag = "${img}:${tag}"
     
+    def devNamespace = 'develop'
+    def proNamespace = 'production'
+
     checkout scm
 
     stage '建立映像檔'
