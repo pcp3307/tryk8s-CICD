@@ -1,0 +1,9 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: k8stest-ingress
+  namespace: production
+spec:
+  backend:
+    serviceName: k8stest
+    servicePort: 80

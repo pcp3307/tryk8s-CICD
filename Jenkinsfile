@@ -20,6 +20,13 @@ node{
     // replace as new image
     sh("sed -i.bak 's#gcr.io/k8stest-image#${imgWithTag}#' ./k8s/deploy.yaml")
     switch (env.BRANCH_NAME) {
+      case "pro":
+        // replace namespace settings
+        sh("sed -i.bak 's#env: current#env: ${proNamespace}#' ./k8s/service.yaml")
+        sh("sed -i.bak 's#env: current#env: ${proNamespace}#' ./k8s/deploy.yaml")
+        sh("kubectl --namespace=${proNamespace} apply -f ./k8s/service.yaml")
+        sh("kubectl --namespace=${proNamespace} apply -f ./k8s/deploy.yaml")
+        break
       case "master":
         // replace namespace settings
         sh("sed -i.bak 's#env: current#env: ${devNamespace}#' ./k8s/service.yaml")
