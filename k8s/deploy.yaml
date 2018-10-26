@@ -19,6 +19,11 @@ spec:
             memory: 0
             cpu: 0
         imagePullPolicy: Always
+        env:
+        - name: SERVER_PORT
+          value: "80"
+        - name: DB_SERVER
+          value: "mongodb-svc"
         ports:
         - containerPort: 80
           protocol: TCP

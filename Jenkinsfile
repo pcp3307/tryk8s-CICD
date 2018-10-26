@@ -26,6 +26,7 @@ node{
         sh("sed -i.bak 's#env: current#env: ${devNamespace}#' ./k8s/deploy.yaml")
         sh("kubectl --namespace=${devNamespace} apply -f ./k8s/service.yaml")
         sh("kubectl --namespace=${devNamespace} apply -f ./k8s/deploy.yaml")
+	sh("kubectl --namespace=${devNamespace} apply -f ./k8s/mongodb.yaml")
         break
     }
 }

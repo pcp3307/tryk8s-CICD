@@ -1,0 +1,33 @@
+#####################################
+# 2018 ithome ironman
+# Author: James Lu
+# Topic: k8s 不自賞 - Day 26 部署多階層應用：簡易通訊錄 SAB
+# Url: https://ithelp.ithome.com.tw/articles/10195946
+# Licence: MIT
+#####################################
+apiVersion: v1
+kind: Pod
+metadata:
+  name: mongodb
+  labels:
+    app: mongodb
+spec:
+  containers:
+  - name: mongodb
+    image: mongo
+    ports:
+      - containerPort: 27017
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mongodb-svc
+spec:
+  type: ClusterIP
+  selector:
+    app: mongodb
+  ports:
+    - protocol: TCP
+      port: 27017
+      
